@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service AccessControl {
+  rpc CheckUID (UIDRequest) returns (AccessResponse);
+}
+
+message UIDRequest {
+  string uid = 1;
+}
+
+message AccessResponse {
+  bool granted = 1;
+  string message = 2;
+}
