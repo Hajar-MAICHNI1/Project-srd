@@ -24,8 +24,9 @@ def receive_uid():
 
     try:
         grpc_request = access_control_pb2.UIDRequest(uid=uid)
-        grpc_response = stub.authentifier_carte(grpc_request)
-        access_granted = grpc_response.is_authorized
+        grpc_response = stub.CheckUID(grpc_request)
+
+        access_granted = grpc_response.granted
     except Exception as e:
         print(f"[GATEWAY] Error contacting gRPC server: {e}")
         return "False", 500
